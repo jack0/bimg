@@ -480,6 +480,7 @@ func vipsToBytes(imgBuf []byte) ([]byte, error) {
 
 	defer C.free(buf)
 	defer C.vips_error_clear()
+	defer C.g_object_unref(C.gpointer(image))
 
 	return C.GoBytes(unsafe.Pointer(buf), C.int(length)), nil
 }
